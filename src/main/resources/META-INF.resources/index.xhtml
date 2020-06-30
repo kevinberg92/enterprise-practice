@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:sec="http://www.springframework.org/security/tags"
+        >
+
+<ui:composition template="/layout.xhtml">
+
+    <ui:define name="title">
+        Quiz Game
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h2>Quiz Game</h2>
+        
+        <!-- not this jibberish at all, just a new tag for security....
+        <c:choose>
+            <c:when test="#{}"></c:when>
+        </c:choose>
+        -->
+        <sec:authenticated>
+
+        <h:form prependId="false">
+            <h:commandButton value="New Match" action="#{matchController.newMatch}" class="newMatchBtnId"/>
+        </h:form>
+            <!-- defines a value like a Match match = new Match() ?
+            also have to use this way to known which username the stats
+            is going to show up for -->
+            <c:set value="#{userInfoController.matchStats}" var="stats"/>
+
+            <p class="victories"> You have won: </p><h:outputLabel value="#{stats.victories}" class="victories"/>
+            <br/>
+            <p class="defeats"> You have lost: </p><h:outputLabel value="#{stats.defeats}" class="defeats"/>
+
+    </sec:authenticated>
+
+        <!-- anonymous aka not logged in -->
+        <sec:anonymous>
+            Log in to play
+        </sec:anonymous>
+
+
+    </ui:define>
+</ui:composition>
+</html>

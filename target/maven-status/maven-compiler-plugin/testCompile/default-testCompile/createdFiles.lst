@@ -1,0 +1,10 @@
+org\kevinberg\konteprise\quizgame\selenium\po\LayoutPO.class
+org\kevinberg\konteprise\quizgame\service\ServiceTestBase.class
+org\kevinberg\konteprise\quizgame\service\ResetService.class
+org\kevinberg\konteprise\quizgame\selenium\po\IndexPO.class
+org\kevinberg\konteprise\quizgame\selenium\po\SignupPO.class
+org\kevinberg\konteprise\quizgame\LocalApplicationRunner.class
+org\kevinberg\konteprise\quizgame\selenium\po\ui\MatchPO.class
+org\kevinberg\konteprise\quizgame\service\MatchStatsServiceTest.class
+org\kevinberg\konteprise\quizgame\selenium\po\ui\ResultPO.class
+org\kevinberg\konteprise\quizgame\selenium\SeleniumLocalIT.class
