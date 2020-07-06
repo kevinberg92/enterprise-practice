@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+>
+
+<ui:composition template="/META-INF.resources/layout.xhtml">
+
+    <ui:define name="title">
+        Match
+    </ui:define>
+
+    <ui:define name="content">
+        <h2>Match</h2>
+
+
+        <c:choose>
+            <c:when test="#{!matchController.matchOn}">
+                No ongoing match
+                <br/>
+                <h:form>
+                    <h:commandButton value="New Match" action="#{matchController.newMatch}" class="newMatchBtnId"/>
+                </h:form>
+            </c:when>
+            <c:otherwise>
+                <!--New Match? -->
+                <c:choose>
+                    <c:when test="#{matchController.categorySelected}">
+                        <h3>Select a category</h3>
+
+                        <c:forEach var="ctgid" items="#{matchController.categories}">
+                            <h:form>
+                                <h:commandButton value="New Category" action="#{matchController.selectCategory(ctg.id)}" class="newCtgBtnId"/>
+                            </h:form>
+                        </c:forEach>
+                    </c:when>
+
+
+            <p class="questionCounterId">Question <h:outputLabel value="#{matchController.increaseCounter}" class="question"/> </p>
+            <p class="question">Out of <h:outputLabel value="#{matchController.numberOfQuizzes}" class="question"/> </p>
+
+            <br/>
+
+            <c:set var="quiz" value="#{matchController.currentQuiz}"/>
+
+            <p class="questionId">Question: " <h:outputLabel value="#{quiz.question}"/>"</p>
+
+            <h:form>
+                <h:commandButton value="A" action="#{matchController.answerQuiz(0)}" class="gameBtn-question"/>
+            </h:form>
+            <h:form>
+                <h:commandButton value="B" action="#{matchController.answerQuiz(1)}" class="gameBtn-question"/>
+            </h:form>
+            <h:form>
+                <h:commandButton value="C" action="#{matchController.answerQuiz(2)}" class="gameBtn-question"/>
+            </h:form>
+            <h:form>
+                <h:commandButton value="D" action="#{matchController.answerQuiz(3)}" class="gameBtn-question"/>
+            </h:form>
+
+                </c:choose>
+            </c:otherwise>
+        </c:choose>
+    //if category selected, show current quiz to answer, with 4 answers
+    //if user answer correcly, show next quiz
+    //if all 5 answered correctly, redirect to result
+    //each quiz should display its index e.g "2 of 5"
+    //if answered wrong redirect to result
+
+
+
+    </ui:define>
+</ui:composition>
+
+
+
+
+</html>
